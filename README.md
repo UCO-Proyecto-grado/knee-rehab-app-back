@@ -6,19 +6,37 @@ Backend service for the Knee Rehabilitation Application built with FastAPI and d
 
 ```
 knee-rehab-app-back/
-├── app/                    
-│   ├── api/               
-│   ├── core/             
-│   ├── db/                
-│   ├── models/            
-│   ├── services/          
-│   └── main.py            
-├── tests/                 
-├── .venv                 
-├── .gitignore            
-├── handler.py            
-├── requirements.txt      
-└── serverless.yml        
+├── lambda_entidades_primarias/
+│   └── main.py  ← FastAPI + Mangum
+│   └── api/, models/, schemas/, services/
+│
+├── lambda_rehab/
+│   └── main.py  ← FastAPI + Mangum
+│   └── api/, models/, schemas/, services/
+│
+├── shared/   
+│   ├── core/
+│   │   ├── config.py
+│   │   ├── response_handler.py 
+│   │   └── security.py
+│   │
+│   ├── db/
+│   │   ├── session.py
+│   │   ├── dependencies.py
+│   │   ├── base.py
+│   │   └── base_class.py
+│   │
+│   └── utils/
+│       └── constants.py
+│
+├── tests/ # Pruebas unitarias del sistema
+│   ├── test_rehab.py
+│   ├── test_health.py
+│   └── test_db.py
+├── .venv
+├── requirements.txt
+├── .gitignore
+└── serverless.yml
 ```
 
 ## Technologies Used
@@ -58,7 +76,11 @@ npm install -g serverless
 4. Configure environment variables:
 Create a `.env` file in the root directory with the following variables:
 ```
-DATABASE_URL=postgresql://user:password@localhost:5432/dbname
+DATABASE_HOST=
+DATABASE_PORT=
+DATABASE_NAME=
+DATABASE_USER=
+DATABASE_PASSWORD=
 ```
 
 ## Development

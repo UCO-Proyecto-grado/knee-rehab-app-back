@@ -1,23 +1,22 @@
-service: kneerehab-backend
+service: knee-rehab-app-backend
 
 provider:
   name: aws
-  runtime: python3.11
+  runtime: python3.9
   region: us-east-1
+  timeout: 30
 
 functions:
-  app:
-    handler: handler.handler
+  entidadesPrimarias:
+    handler: lambda_entidades_primarias.main.handler
     events:
-      - http:
-          path: /{proxy+}
+      - httpApi:
+          path: /api/v1/paises
           method: any
-          cors: true
 
-plugins:
-  - serverless-python-requirements
-
-custom:
-  pythonRequirements:
-    dockerizePip: true
-    zip: true
+  rehab:
+    handler: lambda_rehab.main.handler
+    events:
+      - httpApi:
+          path: /api/v1/rehab
+          method: any

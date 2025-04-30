@@ -1,91 +1,103 @@
-# Knee Rehab App Backend
+# Knee Rehabilitation App Backend
 
-Este es el backend del proyecto KneeRehab. Construido en Python con FastAPI y desplegable en AWS Lambda usando arquitectura serverless.
+Backend service for the Knee Rehabilitation Application built with FastAPI and deployed using Serverless Framework.
 
-## Requisitos Previos
-
-- Python 3.8 o superior
-- pip (gestor de paquetes de Python)
-- Git
-
-## Configuración Inicial
-
-1. Crear un entorno virtual de Python:
-```bash
-Linux: 
-python3 -m venv .venv ó 
-
-Para ejecutar el servidor de desarrollo:
-Windows:
-py -m venv .venv
-
-```
-
-2. Activar el entorno virtual:
-```bash
-Linux: 
-source .venv/bin/activate
-
-Windows:
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-.venv\Scripts\activate
-
-```
-
-3. Instalar dependencias:
-```bash
-pip install -r requirements.txt
-```
-
-## Ejecutar la Aplicación
-
-Para ejecutar el servidor de desarrollo:
-```bash
-uvicorn app.main:app --port 5001 --reload
-```
-
-La API estará disponible en:
-- URL base: http://127.0.0.1:5001
-- Documentación Swagger UI: http://127.0.0.1:5001/docs
-- Especificación OpenAPI: http://127.0.0.1:5001/openapi.json
-
-## Estructura del Proyecto
+## Project Structure
 
 ```
 knee-rehab-app-back/
-├── app/
-│   ├── main.py
-│   ├── models/
-│   ├── schemas/
-│   ├── routes/
-│   └── services/
-├── tests/
-├── requirements.txt
-└── README.md
+├── app/                    
+│   ├── api/               
+│   ├── core/             
+│   ├── db/                
+│   ├── models/            
+│   ├── services/          
+│   └── main.py            
+├── tests/                 
+├── .venv                 
+├── .gitignore            
+├── handler.py            
+├── requirements.txt      
+└── serverless.yml        
 ```
 
-## Dependencias Principales
+## Technologies Used
 
-- FastAPI: Framework web moderno para APIs
-- Uvicorn: Servidor ASGI
-- Mangum: Adaptador para AWS Lambda
-- Pydantic: Validación de datos y configuración
+- FastAPI - Modern, fast web framework for building APIs
+- SQLAlchemy - SQL toolkit and ORM
+- PostgreSQL - Database
+- Serverless Framework - For AWS Lambda deployment
+- Mangum - AWS Lambda handler for ASGI applications
 
-## Desarrollo
+## Prerequisites
 
-El servidor de desarrollo incluye:
-- Recarga automática al detectar cambios
-- Documentación interactiva de la API
-- Validación automática de tipos
+- Python 3.8+
+- Node.js and npm (for Serverless Framework)
+- PostgreSQL database
+- AWS account (for deployment)
 
-## Despliegue
+## Setup
 
-El proyecto está configurado para ser desplegado en AWS Lambda usando arquitectura serverless.
+1. Create and activate a virtual environment:
+```bash
+python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+```
 
-## Contribución
+2. Install dependencies:
+```bash
+pip install -r requirements.txt
+pip install pydantic-settings
+```
 
-1. Crear una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-2. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-3. Push a la rama (`git push origin feature/AmazingFeature`)
-4. Abrir un Pull Request
+3. Install Serverless Framework:
+```bash
+npm install -g serverless
+```
+
+4. Configure environment variables:
+Create a `.env` file in the root directory with the following variables:
+```
+DATABASE_URL=postgresql://user:password@localhost:5432/dbname
+```
+
+## Development
+
+To run the application locally:
+
+```bash
+uvicorn app.main:app --reload
+```
+
+The API will be available at `http://localhost:8000`
+
+## Testing
+
+Run tests using pytest:
+
+```bash
+pytest
+```
+
+## Deployment
+
+Deploy to AWS using Serverless Framework:
+
+```bash
+serverless deploy
+```
+
+## API Documentation
+
+Once the application is running, you can access the API documentation at:
+- Swagger UI: `http://localhost:8000/docs`
+- ReDoc: `http://localhost:8000/redoc`
+
+## License
+
+[Your License Here]
+
+## Contributing
+
+[Your Contributing Guidelines Here]
 

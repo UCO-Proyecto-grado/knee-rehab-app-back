@@ -1,81 +1,58 @@
-# Knee Rehabilitation App Backend
+# KneeRehab App – Arquitectura Serverless
 
-Backend service for the Knee Rehabilitation Application built with FastAPI and deployed using Serverless Framework.
+Este proyecto implementa un sistema modular y escalable para la gestión de procesos de rehabilitación de rodilla usando **AWS Lambda** y **FastAPI**, con una estructura basada en **carpetas compartidas (shared)** reutilizables entre múltiples funciones Lambda.
 
-## Project Structure
+---
+
+## 📁 Estructura del Proyecto
 
 ```
-knee-rehab-app-back/
-├── lambda_entidades_primarias/
-│   └── main.py  ← FastAPI + Mangum
-│   └── api/, models/, schemas/, services/
+knee-rehab-app/
 │
-├── lambda_rehab/
-│   └── main.py  ← FastAPI + Mangum
-│   └── api/, models/, schemas/, services/
-│
-├── shared/   
-│   ├── core/
-│   │   ├── config.py
-│   │   ├── response_handler.py 
-│   │   └── security.py
-│   │
-│   ├── db/
-│   │   ├── session.py
-│   │   ├── dependencies.py
-│   │   ├── base.py
-│   │   └── base_class.py
-│   │
-│   └── utils/
-│       └── constants.py
-│
-├── tests/ # Pruebas unitarias del sistema
-│   ├── test_rehab.py
-│   ├── test_health.py
-│   └── test_db.py
-├── .venv
-├── requirements.txt
-├── .gitignore
-└── serverless.yml
+├── shared/                  # Código común reutilizable (db, core, utils)
+├── lambda_rehab/            # Lambda principal para gestionar la rehabilitación
+├── tests/                   # Pruebas unitarias
+├── .env                     # Variables de entorno
+├── serverless.yml           # Configuración de Serverless Framework
+├── requirements.txt         # Dependencias del proyecto
+└── .venv/                   # Entorno virtual local (NO se sube a producción)
 ```
 
-## Technologies Used
+---
 
-- FastAPI - Modern, fast web framework for building APIs
-- SQLAlchemy - SQL toolkit and ORM
-- PostgreSQL - Database
-- Serverless Framework - For AWS Lambda deployment
-- Mangum - AWS Lambda handler for ASGI applications
+## 🚀 Requisitos Previos
 
-## Prerequisites
+- Python 3.10+
+- [Serverless Framework](https://www.serverless.com/framework/docs/getting-started)
+- Cuenta en AWS con credenciales configuradas localmente
+- PostgreSQL en local o en RDS para desarrollo
 
-- Python 3.8+
-- Node.js and npm (for Serverless Framework)
-- PostgreSQL database
-- AWS account (for deployment)
+---
 
-## Setup
+## ✅ Instalación y Configuración Local
 
-1. Create and activate a virtual environment:
+### 1. Clonar el proyecto y crear entorno virtual
+
 ```bash
+git clone https://tu-repo/knee-rehab-app.git
+cd knee-rehab-app
 python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+source .venv/bin/activate  # Linux/macOS
+.venv\Scripts\activate   # Windows
 ```
 
-2. Install dependencies:
+### 2. Instalar dependencias
+
 ```bash
 pip install -r requirements.txt
-pip install pydantic-settings
 ```
 
-3. Install Serverless Framework:
+---
+### 3. Configurar variables de entorno
+
+Crear el archivo `.env` en la raiz del proyecto siguiente la siguiente estructura:
+
 ```bash
-npm install -g serverless
-```
-
-4. Configure environment variables:
-Create a `.env` file in the root directory with the following variables:
-```
 DATABASE_HOST=
 DATABASE_PORT=
 DATABASE_NAME=
@@ -83,43 +60,84 @@ DATABASE_USER=
 DATABASE_PASSWORD=
 ```
 
-## Development
+---
 
-To run the application locally:
+## 🧪 Ejecución Local (Desarrollo)
 
-```bash
-uvicorn app.main:app --reload
-```
-
-The API will be available at `http://localhost:8000`
-
-## Testing
-
-Run tests using pytest:
+### Ejecutar todas las lambdas(`local_main.py`) con Uvicorn
 
 ```bash
-pytest
+uvicorn local_main:app --reload
 ```
-
-## Deployment
-
-Deploy to AWS using Serverless Framework:
+### Ejecutar Lambda especifica (`lambda_instituciones`) con Uvicorn
 
 ```bash
-serverless deploy
+uvicorn lambda_rehab.main:app --reload
 ```
 
-## API Documentation
+### Ejecutar pruebas
 
-Once the application is running, you can access the API documentation at:
+```bash
+pytest tests/
+```
+
+---
+
+## ⚙️ Despliegue en AWS con Serverless Framework
+
+### 1. Configurar credenciales AWS en tu máquina
+
+```bash
+aws configure
+```
+
+### 2. Desplegar
+
+```bash
+sls deploy
+```
+
+Esto empaquetará tu Lambda desde `lambda_rehab/` e incluirá automáticamente `shared/` como capa o parte del paquete.
+
+---
+
+## 📦 Estructura recomendada por función
+
+Puedes crear múltiples Lambdas con esta estructura:
+
+```
+lambda_rehab/
+lambda_auth/
+lambda_notify/
+```
+
+Todas reutilizando módulos de:
+
+```
+shared/db/
+shared/core/
+shared/utils/
+```
+
+---
+
+## 🔐 Buenas prácticas
+
+- No subir `.venv` ni `.env` a repositorios remotos.
+- Evitar código duplicado entre Lambdas. Usa `shared/`.
+- Versiona tus endpoints y mantén documentada tu API.
+
+---
+
+## Documentacion de API 
+
+Una vez la aplicacion este corriendo, se tendra acceso a la documentacion mediante los siguientes parametros:
 - Swagger UI: `http://localhost:8000/docs`
 - ReDoc: `http://localhost:8000/redoc`
 
-## License
+---
 
-[Your License Here]
+## 📬 Contacto
 
-## Contributing
-
-[Your Contributing Guidelines Here]
-
+Proyecto desarrollado por Sebastian Ramirez y Harby Garcia Grajales – **KneeRehab App**
+Repositorio educativo – Proyecto de grado UCO - Ingenieria de sistemas – 2025

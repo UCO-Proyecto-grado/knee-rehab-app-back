@@ -14,9 +14,9 @@ functions:
           path: /api/v1/paises
           method: any
 
-  rehab:
-    handler: lambda_rehab.main.handler
+  instituciones:
+    handler: lambda_instituciones.main.handler
     events:
       - httpApi:
-          path: /api/v1/rehab
+          path: /api/v1/instituciones
           method: any

@@ -14,7 +14,7 @@ from shared.utils.constants import (
     HTTP_500_INTERNAL_SERVER_ERROR
 )
 
-router = APIRouter(tags=["Paises"])
+router = APIRouter()
 
 @router.post("/", response_model=PaisOut)
 def crear_pais(pais: PaisCreate, db: Session = Depends(get_db)):

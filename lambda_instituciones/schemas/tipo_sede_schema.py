@@ -1,16 +1,16 @@
 from uuid import UUID
 from pydantic import BaseModel
 
-class PaisBase(BaseModel):
+class TipoSedeBase(BaseModel):
     nombre: str
 
-class PaisCreate(PaisBase):
+class TipoSedeCreate(TipoSedeBase):
     pass
 
-class PaisUpdate(PaisBase):
+class TipoSedeUpdate(TipoSedeBase):
     pass
 
-class PaisOut(PaisBase):
+class TipoSedeOut(TipoSedeBase):
     id: UUID
 
     class Config:

@@ -1,0 +1,41 @@
+name: Deploy to Dev (AWS Lambda)
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy-dev:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código fuente
+        uses: actions/checkout@v3
+
+      - name: Configurar Python 3.12
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Instalar dependencias Python
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Instalar Serverless Framework
+        run: npm install -g serverless
+
+      - name: Configurar credenciales AWS
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          serverless config credentials \
+            --provider aws \
+            --key "$AWS_ACCESS_KEY_ID" \
+            --secret "$AWS_SECRET_ACCESS_KEY"
+
+      - name: Desplegar con Serverless (stage: dev)
+        run: sls deploy --stage dev
+

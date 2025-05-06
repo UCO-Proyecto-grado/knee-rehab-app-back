@@ -2,9 +2,10 @@ service: knee-rehab-app-backend
 
 provider:
   name: aws
-  runtime: python3.9
+  runtime: python3.12
   region: us-east-1
   timeout: 30
+  stage: ${opt:stage, 'dev'}
 
 functions:
   entidadesPrimarias:

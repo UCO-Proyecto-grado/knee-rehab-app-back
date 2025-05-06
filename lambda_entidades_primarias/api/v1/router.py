@@ -8,8 +8,8 @@ from lambda_entidades_primarias.api.v1.endpoints.estado_router import router as 
 
 
 router = APIRouter(tags=["Entidades Primarias"])
-router.include_router(pais_router, prefix="/paises", tags=["Paises"])
-router.include_router(departamento_router, prefix="/departamentos", tags=["Departamentos"])
-router.include_router(ciudad_router, prefix="/ciudades", tags=["Ciudades"])
-router.include_router(tipo_dni_router, prefix="/tipos-dni", tags=["Tipos_dni"])
-router.include_router(estado_router, prefix="/estados", tags=["Estados"])
+router.include_router(pais_router, prefix="/paises")
+router.include_router(departamento_router, prefix="/departamentos")
+router.include_router(ciudad_router, prefix="/ciudades")
+router.include_router(tipo_dni_router, prefix="/tipos-dni")
+router.include_router(estado_router, prefix="/estados")

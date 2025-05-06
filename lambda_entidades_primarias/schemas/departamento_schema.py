@@ -1,7 +1,7 @@
 from uuid import UUID
 from datetime import datetime
 from pydantic import BaseModel
-from schemas.pais_schema import PaisOut
+from lambda_entidades_primarias.schemas.pais_schema import PaisOut
 
 class DepartamentoBase(BaseModel):
     nombre: str

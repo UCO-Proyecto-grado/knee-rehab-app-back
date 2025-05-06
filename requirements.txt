@@ -5,8 +5,5 @@ sqlalchemy
 psycopg2-binary
 python-dotenv
 pydantic
-<<<<<<< HEAD
 pydantic_settings
-=======
-pydantic-settings
->>>>>>> 1eda98eb7828c4add87926926c49edd51fc7b579
+pydantic[email]

@@ -14,7 +14,7 @@ from shared.utils.constants import (
     HTTP_500_INTERNAL_SERVER_ERROR
 )
 
-router = APIRouter(tags=["Departamentos"])
+router = APIRouter()
 
 @router.post("/", response_model=DepartamentoOut)
 def crear_departamento(departamento: DepartamentoCreate, db: Session = Depends(get_db)):

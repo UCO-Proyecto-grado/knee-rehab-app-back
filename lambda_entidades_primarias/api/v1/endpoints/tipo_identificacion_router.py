@@ -18,7 +18,7 @@ from shared.utils.constants import (
 
 router = APIRouter()
 
-@router.post("/", response_model=TipoIdentificacionOut)
+@router.post("", response_model=TipoIdentificacionOut)
 def crear_tipo(tipo: TipoIdentificacionCreate, db: Session = Depends(get_db)):
     try:
         nuevo = tipo_identificacion_service.create_tipo_identificacion(db, tipo.nombre, tipo.codigo)
@@ -27,7 +27,7 @@ def crear_tipo(tipo: TipoIdentificacionCreate, db: Session = Depends(get_db)):
     except Exception as e:
         return error_response(HTTP_400_BAD_REQUEST, "No se pudo crear el tipo de identificacion", str(e))
 
-@router.get("/", response_model=List[TipoIdentificacionOut])
+@router.get("", response_model=List[TipoIdentificacionOut])
 def listar_tipos(db: Session = Depends(get_db)):
     try:
         tipos = tipo_identificacion_service.get_tipos_identificacion(db)

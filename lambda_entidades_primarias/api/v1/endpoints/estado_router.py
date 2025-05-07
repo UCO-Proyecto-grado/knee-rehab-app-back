@@ -25,7 +25,7 @@ def crear_estado(estado: EstadoCreate, db: Session = Depends(get_db)):
     except Exception as e:
         return error_response(HTTP_400_BAD_REQUEST, "Error al crear estado", str(e))
 
-@router.get("/", response_model=List[EstadoOut])
+@router.get("", response_model=List[EstadoOut])
 def listar_estados(db: Session = Depends(get_db)):
     try:
         estados = estado_service.get_estados(db)

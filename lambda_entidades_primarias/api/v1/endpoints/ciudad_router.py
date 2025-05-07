@@ -16,7 +16,7 @@ from shared.utils.constants import (
 
 router = APIRouter()
 
-@router.post("/", response_model=CiudadOut)
+@router.post("", response_model=CiudadOut)
 def crear_ciudad(ciudad: CiudadCreate, db: Session = Depends(get_db)):
     try:
         nueva = ciudad_service.create_ciudad(db, ciudad.nombre, ciudad.id_departamento)
@@ -25,7 +25,7 @@ def crear_ciudad(ciudad: CiudadCreate, db: Session = Depends(get_db)):
     except Exception as e:
         return error_response(HTTP_400_BAD_REQUEST, "No se pudo crear la ciudad", str(e))
 
-@router.get("/", response_model=List[CiudadOut])
+@router.get("", response_model=List[CiudadOut])
 def listar_ciudades(db: Session = Depends(get_db)):
     try:
         items = ciudad_service.get_ciudades(db)

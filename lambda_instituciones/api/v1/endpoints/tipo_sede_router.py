@@ -26,7 +26,7 @@ def crear_tipo_sede(tipo_sede: TipoSedeCreate, db: Session = Depends(get_db)):
     except Exception as e:
         return error_response(HTTP_500_INTERNAL_SERVER_ERROR, "Error interno del servidor", str(e))
 
-@router.get("/", response_model=List[TipoSedeOut])
+@router.get("", response_model=List[TipoSedeOut])
 def listar_tipo_sedes(db: Session = Depends(get_db)):
     try:
         tipo_sedes = tipo_sede_service.get_tipo_sedes(db)

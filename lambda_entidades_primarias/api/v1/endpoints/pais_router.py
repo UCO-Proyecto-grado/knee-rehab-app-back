@@ -16,7 +16,7 @@ from shared.utils.constants import (
 
 router = APIRouter()
 
-@router.post("/", response_model=PaisOut)
+@router.post("", response_model=PaisOut)
 def crear_pais(pais: PaisCreate, db: Session = Depends(get_db)):
     try:
         nuevo_pais = pais_service.create_pais(db, pais.nombre)
@@ -27,7 +27,7 @@ def crear_pais(pais: PaisCreate, db: Session = Depends(get_db)):
     except Exception as e:
         return error_response(HTTP_500_INTERNAL_SERVER_ERROR, "Error interno del servidor", str(e))
 
-@router.get("/", response_model=List[PaisOut])
+@router.get("", response_model=List[PaisOut])
 def listar_paises(db: Session = Depends(get_db)):
     try:
         paises = pais_service.get_paises(db)

@@ -21,7 +21,7 @@ from shared.utils.constants import (
 
 router = APIRouter()
 
-@router.post("/", response_model=CentroRehabilitacionOut)
+@router.post("", response_model=CentroRehabilitacionOut)
 def crear_centro(centro_data: CentroRehabilitacionCreate, db: Session = Depends(get_db)):
     try:
         centro = service.create_centro(db, CentroRehabilitacion(**centro_data.dict()))
@@ -32,7 +32,7 @@ def crear_centro(centro_data: CentroRehabilitacionCreate, db: Session = Depends(
     except Exception as e:
         return error_response(HTTP_500_INTERNAL_SERVER_ERROR, "Error al crear centro", str(e))
 
-@router.get("/", response_model=List[CentroRehabilitacionOut])
+@router.get("", response_model=List[CentroRehabilitacionOut])
 def listar_centros(db: Session = Depends(get_db)):
     try:
         centros = service.get_centros(db)

@@ -16,7 +16,7 @@ from shared.utils.constants import (
 
 router = APIRouter()
 
-@router.post("/", response_model=DepartamentoOut)
+@router.post("", response_model=DepartamentoOut)
 def crear_departamento(departamento: DepartamentoCreate, db: Session = Depends(get_db)):
     try:
         nuevo = departamento_service.create_departamento(db, departamento.nombre, departamento.id_pais)
@@ -25,7 +25,7 @@ def crear_departamento(departamento: DepartamentoCreate, db: Session = Depends(g
     except Exception as e:
         return error_response(HTTP_400_BAD_REQUEST, "No se pudo crear el departamento", str(e))
 
-@router.get("/", response_model=List[DepartamentoOut])
+@router.get("", response_model=List[DepartamentoOut])
 def listar_departamentos(db: Session = Depends(get_db)):
     try:
         items = departamento_service.get_departamentos(db)

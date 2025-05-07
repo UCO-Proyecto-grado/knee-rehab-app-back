@@ -15,7 +15,7 @@ from shared.utils.constants import (
 )
 router = APIRouter()
 
-@router.post("/", response_model=TipoSedeOut)
+@router.post("", response_model=TipoSedeOut)
 def crear_tipo_sede(tipo_sede: TipoSedeCreate, db: Session = Depends(get_db)):
     try:
         nuevo_tipo_sede = tipo_sede_service.create_tipo_sede(db, tipo_sede.nombre)

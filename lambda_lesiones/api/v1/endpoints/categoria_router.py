@@ -10,7 +10,7 @@ from shared.utils.constants import HTTP_200_OK, HTTP_201_CREATED, HTTP_400_BAD_R
 
 router = APIRouter(tags=["Categorias"])
 
-@router.post("/", response_model=CategoriaOut)
+@router.post("", response_model=CategoriaOut)
 def crear_categoria(categoria: CategoriaCreate, db: Session = Depends(get_db)):
     try:
         nueva = categoria_service.create_categoria(db, categoria.nombre)
@@ -19,7 +19,7 @@ def crear_categoria(categoria: CategoriaCreate, db: Session = Depends(get_db)):
     except Exception as e:
         return error_response(HTTP_400_BAD_REQUEST, "No se pudo crear la categoría", str(e))
 
-@router.get("/", response_model=List[CategoriaOut])
+@router.get("", response_model=List[CategoriaOut])
 def listar_categorias(db: Session = Depends(get_db)):
     try:
         items = categoria_service.get_categorias(db)

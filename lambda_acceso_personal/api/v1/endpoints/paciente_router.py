@@ -8,9 +8,9 @@ from shared.db.dependencies import get_db
 from shared.core.response_handler import success_response, error_response
 from shared.utils.constants import HTTP_200_OK, HTTP_201_CREATED, HTTP_400_BAD_REQUEST, HTTP_404_NOT_FOUND, HTTP_500_INTERNAL_SERVER_ERROR
 
-router = APIRouter(tags=["Pacientes"])
+router = APIRouter()
 
-@router.post("/", response_model=PacienteOut)
+@router.post("", response_model=PacienteOut)
 def crear_paciente(paciente: PacienteCreate, db: Session = Depends(get_db)):
     try:
         nuevo = paciente_service.create_paciente(db, paciente.model_dump())
@@ -19,7 +19,7 @@ def crear_paciente(paciente: PacienteCreate, db: Session = Depends(get_db)):
     except Exception as e:
         return error_response(HTTP_400_BAD_REQUEST, "No se pudo crear el paciente", str(e))
 
-@router.get("/", response_model=List[PacienteOut])
+@router.get("", response_model=List[PacienteOut])
 def listar_pacientes(db: Session = Depends(get_db)):
     try:
         pacientes = paciente_service.get_pacientes(db)

@@ -14,7 +14,7 @@ from uuid import UUID
 
 router = APIRouter()
 
-@router.post("/", response_model=SedeOut)
+@router.post("", response_model=SedeOut)
 def crear_sede(sede_data: SedeCreate, db: Session = Depends(get_db)):
     try:
         sede = service.create_sede(db, sede_data)
@@ -22,7 +22,7 @@ def crear_sede(sede_data: SedeCreate, db: Session = Depends(get_db)):
     except Exception as e:
         return error_response(HTTP_500_INTERNAL_SERVER_ERROR, "Error al crear sede", str(e))
 
-@router.get("/", response_model=list[SedeOut])
+@router.get("", response_model=list[SedeOut])
 def listar_sedes(db: Session = Depends(get_db)):
     try:
         sedes = service.get_sedes(db)

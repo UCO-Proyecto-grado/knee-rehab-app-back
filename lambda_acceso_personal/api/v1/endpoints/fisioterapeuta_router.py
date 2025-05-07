@@ -8,9 +8,9 @@ from shared.db.dependencies import get_db
 from shared.core.response_handler import success_response, error_response
 from shared.utils.constants import HTTP_200_OK, HTTP_201_CREATED, HTTP_400_BAD_REQUEST, HTTP_404_NOT_FOUND, HTTP_500_INTERNAL_SERVER_ERROR
 
-router = APIRouter(tags=["Fisioterapeutas"])
+router = APIRouter()
 
-@router.post("/", response_model=FisioterapeutaOut)
+@router.post("", response_model=FisioterapeutaOut)
 def crear_fisioterapeuta(fisioterapeuta: FisioterapeutaCreate, db: Session = Depends(get_db)):
     try:
         nuevo = fisioterapeuta_service.create_fisioterapeuta(db, fisioterapeuta.model_dump())
@@ -19,7 +19,7 @@ def crear_fisioterapeuta(fisioterapeuta: FisioterapeutaCreate, db: Session = Dep
     except Exception as e:
         return error_response(HTTP_400_BAD_REQUEST, "No se pudo crear el fisioterapeuta", str(e))
 
-@router.get("/", response_model=List[FisioterapeutaOut])
+@router.get("", response_model=List[FisioterapeutaOut])
 def listar_fisioterapeutas(db: Session = Depends(get_db)):
     try:
         items = fisioterapeuta_service.get_fisioterapeutas(db)

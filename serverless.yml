@@ -21,3 +21,17 @@ functions:
       - httpApi:
           path: /instituciones
           method: any
+  
+  accesoPersonal:
+    handler: lambda_acceso_personal.main.handler
+    events:
+      - httpApi:
+          path: /acceso-personal
+          method: any
+
+  lesiones:
+    handler: lambda_lesiones.main.handler
+    events:
+      - httpApi:
+          path: /lesiones
+          method: any

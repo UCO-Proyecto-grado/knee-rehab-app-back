@@ -10,7 +10,7 @@ from shared.utils.constants import HTTP_200_OK, HTTP_201_CREATED, HTTP_400_BAD_R
 
 router = APIRouter(tags=["Tipos de Lesión"])
 
-@router.post("/", response_model=TipoLesionOut)
+@router.post("", response_model=TipoLesionOut)
 def crear_tipo_lesion(tipo: TipoLesionCreate, db: Session = Depends(get_db)):
     try:
         nuevo = tipo_lesion_service.create_tipo_lesion(db, tipo.model_dump())
@@ -19,7 +19,7 @@ def crear_tipo_lesion(tipo: TipoLesionCreate, db: Session = Depends(get_db)):
     except Exception as e:
         return error_response(HTTP_400_BAD_REQUEST, "No se pudo crear el tipo de lesión", str(e))
 
-@router.get("/", response_model=List[TipoLesionOut])
+@router.get("", response_model=List[TipoLesionOut])
 def listar_tipos_lesion(db: Session = Depends(get_db)):
     try:
         items = tipo_lesion_service.get_tipos_lesion(db)

@@ -12,12 +12,12 @@ functions:
     handler: lambda_entidades_primarias.main.handler
     events:
       - httpApi:
-          path: /api/v1
+          path: /api/v1/entidades-primarias
           method: any
 
   instituciones:
     handler: lambda_instituciones.main.handler
     events:
       - httpApi:
-          path: /api/v1
+          path: /api/v1/instituciones
           method: any

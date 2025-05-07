@@ -16,7 +16,7 @@ from shared.utils.constants import (
 
 router = APIRouter()
 
-@router.post("/", response_model=EstadoOut)
+@router.post("", response_model=EstadoOut)
 def crear_estado(estado: EstadoCreate, db: Session = Depends(get_db)):
     try:
         nuevo = estado_service.create_estado(db, estado.nombre)

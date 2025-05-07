@@ -26,8 +26,8 @@ jobs:
       - name: Instalar Serverless Framework
         run: npm install -g serverless
 
-      - name: Desplegar con Serverless (stage: dev)
+      - name: "Desplegar con Serverless (stage: dev)"
+        run: sls deploy --stage dev
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: sls deploy --stage dev

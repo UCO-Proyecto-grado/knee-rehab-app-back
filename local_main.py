@@ -11,6 +11,6 @@ app = FastAPI(
 )
 
 # Incluir cada router raíz UNA SOLA VEZ con prefijos distintos
-app.include_router(entidades_router, prefix="/api/v1", tags=["Entidades Primarias"])
-app.include_router(instituciones_router, prefix="/api/v1", tags=["Instituciones"])
+app.include_router(entidades_router, prefix="/entidades-primarias", tags=["Entidades Primarias"])
+app.include_router(instituciones_router, prefix="/instituciones", tags=["Instituciones"])
 # Puedes agregar: /rehab, /pacientes, etc.

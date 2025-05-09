@@ -35,3 +35,10 @@ functions:
       - httpApi:
           path: /lesiones
           method: any
+
+  recursosTerapeuticos:
+    handler: lambda_recursos_terapeuticos.main.handler
+    events:
+      - httpApi:
+          path: /recursos-terapeuticos
+          method: any

@@ -9,7 +9,7 @@ from lambda_lesiones.services import categoria_tipo_lesion_service as service
 from shared.utils.constants import HTTP_200_OK, HTTP_201_CREATED, HTTP_404_NOT_FOUND, HTTP_500_INTERNAL_SERVER_ERROR
 from uuid import UUID
 
-router = APIRouter(prefix="/categoria-tipo-lesion", tags=["CategoriaTipoLesion"])
+router = APIRouter()
 
 
 @router.post("", response_model=CategoriaTipoLesionOut)

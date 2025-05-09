@@ -10,7 +10,7 @@ from shared.db.dependencies import get_db
 from shared.core.response_handler import success_response, error_response
 from shared.utils.constants import HTTP_200_OK, HTTP_201_CREATED, HTTP_404_NOT_FOUND, HTTP_500_INTERNAL_SERVER_ERROR
 
-router = APIRouter(prefix="/paciente-categoria-tipo-lesion", tags=["PacienteCategoriaTipoLesion"])
+router = APIRouter()
 
 
 @router.post("", response_model=PacienteCategoriaTipoLesionOut)

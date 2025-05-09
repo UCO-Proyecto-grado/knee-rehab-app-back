@@ -42,3 +42,9 @@ functions:
       - httpApi:
           path: /recursos-terapeuticos
           method: any
+  terapias:
+    handler: lambda_terapias.main.handler
+    events:
+      - httpApi:
+          path: /terapias
+          method: any

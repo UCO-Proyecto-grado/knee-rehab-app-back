@@ -20,6 +20,10 @@ def get_sede_by_id(db: Session, sede_id: UUID):
     return db.query(Sede).filter(Sede.id == sede_id).first()
 
 
+def get_sedes_by_organizacion_id(db: Session, id_organizacion: UUID):
+    return db.query(Sede).filter(Sede.id_organizacion == id_organizacion).all()
+
+
 def update_sede(db: Session, sede_id: UUID, sede_data: SedeUpdate):
     sede = get_sede_by_id(db, sede_id)
     if not sede:

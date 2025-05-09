@@ -15,7 +15,7 @@ class FisioterapeutaBase(BaseModel):
     id_estado: UUID
 
 class FisioterapeutaCreate(FisioterapeutaBase):
-    pass
+    id_sede: UUID | None = None
 
 class FisioterapeutaUpdate(FisioterapeutaBase):
     pass

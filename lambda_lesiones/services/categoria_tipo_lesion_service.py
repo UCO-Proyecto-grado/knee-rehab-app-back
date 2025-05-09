@@ -22,7 +22,6 @@ def create_relacion(db: Session, data: CategoriaTipoLesionCreate):
 def get_relaciones(db: Session):
     return db.query(CategoriaTipoLesion).all()
 
-
 def delete_relacion(db: Session, id_relacion: UUID):
     relacion = db.query(CategoriaTipoLesion).filter_by(id=id_relacion).first()
     if relacion:

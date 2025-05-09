@@ -13,16 +13,21 @@ router = APIRouter()
 @router.post("", response_model=FisioterapeutaOut)
 def crear_fisioterapeuta(fisioterapeuta: FisioterapeutaCreate, db: Session = Depends(get_db)):
     try:
-        nuevo = fisioterapeuta_service.create_fisioterapeuta(db, fisioterapeuta.model_dump())
+        fisioterapeuta_data = fisioterapeuta.model_dump()
+        id_sede = fisioterapeuta_data.pop("id_sede", None)
+        nuevo = fisioterapeuta_service.create_fisioterapeuta(db, fisioterapeuta_data, id_sede=id_sede)
         data = FisioterapeutaOut.model_validate(nuevo).model_dump(mode="json")
         return success_response(HTTP_201_CREATED, "Fisioterapeuta creado correctamente", data)
     except Exception as e:
         return error_response(HTTP_400_BAD_REQUEST, "No se pudo crear el fisioterapeuta", str(e))
 
 @router.get("", response_model=List[FisioterapeutaOut])
-def listar_fisioterapeutas(db: Session = Depends(get_db)):
+def listar_fisioterapeutas(db: Session = Depends(get_db), id_sede: UUID | None = None, id_organizacion: UUID | None = None):
     try:
-        items = fisioterapeuta_service.get_fisioterapeutas(db)
+        if id_sede or id_organizacion:
+            items = fisioterapeuta_service.get_fisioterapeutas_filtrados(db, id_sede=id_sede, id_organizacion=id_organizacion)
+        else:
+            items = fisioterapeuta_service.get_fisioterapeutas(db)
         data = [FisioterapeutaOut.model_validate(f).model_dump(mode="json") for f in items]
         return success_response(HTTP_200_OK, "Fisioterapeutas listados", data)
     except Exception as e:

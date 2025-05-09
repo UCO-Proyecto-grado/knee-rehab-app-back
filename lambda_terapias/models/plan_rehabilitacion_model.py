@@ -22,6 +22,6 @@ class PlanRehabilitacion(Base):
     observaciones = Column(Text, nullable=True)
 
     # Relaciones
-    fisioterapeuta_sede = relationship("FisioterapeutaSede", backref="planes_rehabilitacion")
+    # fisioterapeuta_sede = relationship("FisioterapeutaSede", backref="planes_rehabilitacion")
     estado = relationship("Estado", backref="planes_rehabilitacion")
     paciente_categoria_tipo_lesion = relationship("PacienteCategoriaTipoLesion", backref="planes_rehabilitacion")

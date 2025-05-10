@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from lambda_recursos_terapeuticos.api.v1.router import router as api_router
+from api.v1 import router as api_router
 from mangum import Mangum
 from shared.core.cors import add_cors
 

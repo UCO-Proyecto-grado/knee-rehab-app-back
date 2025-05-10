@@ -30,3 +30,4 @@
 [2025-05-09 21:02:33,778] INFO in lambda_entidades_primarias.services.estado_service: Estado.FETCH_ALL
 [2025-05-09 21:02:33,990] INFO in lambda_entidades_primarias.services.ciudad_service: Ciudad.FETCH_ALL
 [2025-05-09 21:02:36,075] INFO in lambda_lesiones.services.categoria_tipo_lesion_service: CategoriaTipoLesion.FETCH_ALL
+[2025-05-10 10:39:04,136] INFO in lambda_entidades_primarias.services.pais_service: Pais.FETCH_ALL

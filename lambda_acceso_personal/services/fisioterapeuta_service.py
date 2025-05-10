@@ -11,19 +11,26 @@ from lambda_instituciones.services import sede_service as instituciones_sede_ser
 logger = get_logger(__name__)
 
 
-def create_fisioterapeuta(db: Session, data: dict):
+def create_fisioterapeuta(db: Session, data: dict, id_sede: uuid.UUID | None = None):
     logger.info(f"{LogMessages.Fisioterapeuta.CREATE_ATTEMPT} - Identificación: {data.get('identificacion')}")
+
     try:
         existente = db.query(Fisioterapeuta).filter(Fisioterapeuta.identificacion == data["identificacion"]).first()
         if existente:
             logger.warning(f"{LogMessages.Fisioterapeuta.DUPLICATE} - Identificación: {data['identificacion']}")
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Fisioterapeuta ya registrado")
 
-        nuevo = Fisioterapeuta(**data)
+        nuevo_fisioterapeuta_data = data.copy() # Create a copy to avoid modifying the original dict
+        nuevo = Fisioterapeuta(**nuevo_fisioterapeuta_data)
         db.add(nuevo)
         db.commit()
         db.refresh(nuevo)
-
+        if id_sede:
+            fisioterapeuta_sede_data = FisioterapeutaSedeCreate(
+                id_fisioterapeuta=nuevo.id,
+                id_sede=id_sede
+            )
+            create_fisioterapeuta_sede(db=db, data=fisioterapeuta_sede_data)
         logger.info(f"{LogMessages.Fisioterapeuta.CREATE_SUCCESS} - ID: {nuevo.id}")
         return nuevo
 

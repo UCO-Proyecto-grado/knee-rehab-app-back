@@ -5,11 +5,11 @@ from shared.db.base_class import Base
 from sqlalchemy.sql import func
 from sqlalchemy.types import TIMESTAMP
 from datetime import datetime
-
+import uuid
 class Paciente(Base):
     __tablename__ = "paciente"
 
-    id = Column(UUID(as_uuid=True), primary_key=True, index=True)
+    id = Column(UUID(as_uuid=True), primary_key=True, index=True, default=uuid.uuid4)
     id_tipo_identificacion = Column(UUID(as_uuid=True), ForeignKey("tipo_identificacion.id", ondelete="CASCADE"), nullable=False)
     identificacion = Column(String(50), nullable=False)
     nombre = Column(String(100), nullable=False)

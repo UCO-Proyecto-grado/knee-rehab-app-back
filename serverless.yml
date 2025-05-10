@@ -1,50 +1,105 @@
 service: knee-rehab-app-backend
 
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: non-linux # O true si tu CI/CD usa un OS diferente a Lambda (Linux)
+    zip: true
+    slim: true
+    # layer: false # Mantenlo comentado o en false para empaquetar con la función directamente por ahora
+    # fileName: requirements.txt # Usa el requirements.txt en la raíz por defecto
+    noDeploy:
+      - boto3
+      - botocore
+
 provider:
   name: aws
-  runtime: python3.12
-  region: us-east-1
-  timeout: 30
+  runtime: python3.12 # Asegúrate que GitHub Actions use la misma versión
+  region: us-east-1 # Puedes cambiar esto a tu región preferida
+  timeout: 30 # Timeout global para las funciones, puede ser ajustado por función
   stage: ${opt:stage, 'dev'}
+  environment: # Variables de entorno globales para todas las funciones
+    PYTHONPATH: "/var/runtime:/opt" # Necesario para que las dependencias empaquetadas sean encontradas
+    # Aquí puedes añadir variables de entorno que tus lambdas necesiten,
+    # por ejemplo, las de conexión a la base de datos.
+    # DATABASE_HOST: ${ssm:/path/to/your/db_host} # Ejemplo usando SSM Parameter Store
+    # DATABASE_USER: ${ssm:/path/to/your/db_user}
+    # DATABASE_PASSWORD: ${ssm:/path/to/your/db_password}
+    # DATABASE_NAME: ${ssm:/path/to/your/db_name}
+    # DATABASE_PORT: ${ssm:/path/to/your/db_port}
+  httpApi: # Configuración global para HTTP API Gateway
+    cors: true # Habilita CORS globalmente para todas las funciones con HTTP API
+
+package:
+  patterns:
+    - '!node_modules/**'
+    - '!package-lock.json'
+    - '!package.json'
+    - '!.serverless/**'
+    - '!.venv/**'
+    - '!.vscode/**'
+    - '!.github/**' # Excluir la carpeta de GitHub Actions del paquete de la Lambda
+    - '!tests/**' # Excluir tests
+    - '!sonar-project.properties'
+    - '!README.md'
+    - '!.gitignore'
+    - '!local_main.py' # No es necesario para el despliegue de Lambdas individuales
+    - '!.env' # Muy importante NO incluir el .env
+    - 'shared/**' # Incluir el directorio compartido
+    - 'lambda_acceso_personal/**'
+    - 'lambda_entidades_primarias/**'
+    - 'lambda_instituciones/**'
+    - 'lambda_lesiones/**'
+    - 'lambda_recursos_terapeuticos/**'
+    - 'lambda_terapias/**'
+    # serverless-python-requirements se encarga del requirements.txt
 
 functions:
   entidadesPrimarias:
     handler: lambda_entidades_primarias.main.handler
+    module: lambda_entidades_primarias # Ayuda al plugin a encontrar el contexto correcto
     events:
       - httpApi:
-          path: /entidades-primarias
+          path: /entidades-primarias/{proxy+}
           method: any
 
   instituciones:
     handler: lambda_instituciones.main.handler
+    module: lambda_instituciones
     events:
       - httpApi:
-          path: /instituciones
+          path: /instituciones/{proxy+}
           method: any
-  
+
   accesoPersonal:
     handler: lambda_acceso_personal.main.handler
+    module: lambda_acceso_personal
     events:
       - httpApi:
-          path: /acceso-personal
+          path: /acceso-personal/{proxy+}
           method: any
 
   lesiones:
     handler: lambda_lesiones.main.handler
+    module: lambda_lesiones
     events:
       - httpApi:
-          path: /lesiones
+          path: /lesiones/{proxy+}
           method: any
 
   recursosTerapeuticos:
     handler: lambda_recursos_terapeuticos.main.handler
+    module: lambda_recursos_terapeuticos
     events:
       - httpApi:
-          path: /recursos-terapeuticos
+          path: /recursos-terapeuticos/{proxy+}
           method: any
   terapias:
     handler: lambda_terapias.main.handler
+    module: lambda_terapias
     events:
       - httpApi:
-          path: /terapias
+          path: /terapias/{proxy+}
           method: any

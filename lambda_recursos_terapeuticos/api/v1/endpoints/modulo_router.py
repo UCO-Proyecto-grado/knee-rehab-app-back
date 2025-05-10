@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from lambda_recursos_terapeuticos.schemas.modulo_schema import ModuloCreate, ModuloUpdate, ModuloOut
-from lambda_recursos_terapeuticos.services.modulo_service import create_modulo, get_modulos, get_modulo_by_id, update_modulo, delete_modulo
+from schemas.modulo_schema import ModuloCreate, ModuloUpdate, ModuloOut
+from services.modulo_service import create_modulo, get_modulos, get_modulo_by_id, update_modulo, delete_modulo
 from shared.db.dependencies import get_db
 from shared.core.response_handler import success_response, error_response
 from shared.utils.constants import (

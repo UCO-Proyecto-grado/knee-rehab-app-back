@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from sqlalchemy import or_, func
 from lambda_instituciones.models.centro_rehabilitacion_model import CentroRehabilitacion
-from lambda_instituciones.schemas.centro_rehabilitacion_schema import CentroRehabilitacionUpdate, CentroRehabilitacion as CentroRehabilitacionIn
+from lambda_instituciones.schemas.centro_rehabilitacion_schema import CentroRehabilitacionUpdate, CentroRehabilitacionBase as CentroRehabilitacionIn
 from fastapi import HTTPException, status
 from shared.utils.logging_config import get_logger
 from shared.utils.log_messages import LogMessages

@@ -1,0 +1,32 @@
+[2025-05-09 20:49:47,502] INFO in lambda_instituciones.services.sede_service: Sede.FETCH_ALL
+[2025-05-09 20:49:50,423] INFO in lambda_instituciones.services.sede_service: Sede.FETCH_ALL
+[2025-05-09 20:49:50,425] INFO in lambda_entidades_primarias.services.tipo_identificacion_service: TipoIdentificacion.FETCH_ALL
+[2025-05-09 20:49:51,193] INFO in lambda_entidades_primarias.services.estado_service: Estado.FETCH_ALL
+[2025-05-09 20:49:51,421] INFO in lambda_entidades_primarias.services.ciudad_service: Ciudad.FETCH_ALL
+[2025-05-09 20:49:51,561] INFO in lambda_entidades_primarias.services.tipo_identificacion_service: TipoIdentificacion.FETCH_ALL
+[2025-05-09 20:49:51,779] INFO in lambda_entidades_primarias.services.estado_service: Estado.FETCH_ALL
+[2025-05-09 20:49:52,189] INFO in lambda_entidades_primarias.services.ciudad_service: Ciudad.FETCH_ALL
+[2025-05-09 20:49:52,191] INFO in lambda_lesiones.services.categoria_tipo_lesion_service: CategoriaTipoLesion.FETCH_ALL
+[2025-05-09 20:49:55,111] INFO in lambda_lesiones.services.categoria_tipo_lesion_service: CategoriaTipoLesion.FETCH_ALL
+[2025-05-09 20:50:54,936] INFO in lambda_acceso_personal.services.paciente_service: Paciente.CREATE_ATTEMPT - Identificación: 35439580
+[2025-05-09 20:50:55,391] INFO in lambda_acceso_personal.services.paciente_service: Paciente.CREATE_SUCCESS - ID: f04cf321-e86a-42b0-b7d3-c2c08dab4a2e
+[2025-05-09 21:00:29,624] INFO in lambda_instituciones.services.sede_service: Sede.FETCH_ALL
+[2025-05-09 21:00:30,746] INFO in lambda_instituciones.services.sede_service: Sede.FETCH_ALL
+[2025-05-09 21:00:30,747] INFO in lambda_entidades_primarias.services.tipo_identificacion_service: TipoIdentificacion.FETCH_ALL
+[2025-05-09 21:00:30,960] INFO in lambda_entidades_primarias.services.estado_service: Estado.FETCH_ALL
+[2025-05-09 21:00:31,172] INFO in lambda_entidades_primarias.services.ciudad_service: Ciudad.FETCH_ALL
+[2025-05-09 21:00:31,883] INFO in lambda_entidades_primarias.services.tipo_identificacion_service: TipoIdentificacion.FETCH_ALL
+[2025-05-09 21:00:31,884] INFO in lambda_lesiones.services.categoria_tipo_lesion_service: CategoriaTipoLesion.FETCH_ALL
+[2025-05-09 21:00:32,095] INFO in lambda_entidades_primarias.services.estado_service: Estado.FETCH_ALL
+[2025-05-09 21:00:32,307] INFO in lambda_entidades_primarias.services.ciudad_service: Ciudad.FETCH_ALL
+[2025-05-09 21:00:34,703] INFO in lambda_lesiones.services.categoria_tipo_lesion_service: CategoriaTipoLesion.FETCH_ALL
+[2025-05-09 21:02:31,313] INFO in lambda_instituciones.services.sede_service: Sede.FETCH_ALL
+[2025-05-09 21:02:32,447] INFO in lambda_instituciones.services.sede_service: Sede.FETCH_ALL
+[2025-05-09 21:02:32,451] INFO in lambda_entidades_primarias.services.tipo_identificacion_service: TipoIdentificacion.FETCH_ALL
+[2025-05-09 21:02:32,667] INFO in lambda_entidades_primarias.services.estado_service: Estado.FETCH_ALL
+[2025-05-09 21:02:32,883] INFO in lambda_entidades_primarias.services.ciudad_service: Ciudad.FETCH_ALL
+[2025-05-09 21:02:33,567] INFO in lambda_entidades_primarias.services.tipo_identificacion_service: TipoIdentificacion.FETCH_ALL
+[2025-05-09 21:02:33,592] INFO in lambda_lesiones.services.categoria_tipo_lesion_service: CategoriaTipoLesion.FETCH_ALL
+[2025-05-09 21:02:33,778] INFO in lambda_entidades_primarias.services.estado_service: Estado.FETCH_ALL
+[2025-05-09 21:02:33,990] INFO in lambda_entidades_primarias.services.ciudad_service: Ciudad.FETCH_ALL
+[2025-05-09 21:02:36,075] INFO in lambda_lesiones.services.categoria_tipo_lesion_service: CategoriaTipoLesion.FETCH_ALL

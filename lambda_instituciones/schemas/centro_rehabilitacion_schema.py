@@ -21,4 +21,4 @@ class CentroRehabilitacionOut(CentroRehabilitacionBase):
     updated_at: datetime
 
     class Config:
-        from_attributes = True  # Habilita conversión desde SQLAlchemy
+        from_attributes = True

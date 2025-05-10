@@ -1,11 +1,23 @@
 service: knee-rehab-app-backend
 
+frameworkVersion: '3'
+
+plugins:
+  - serverless-python-requirements
+
 provider:
   name: aws
   runtime: python3.12
   region: us-east-1
   timeout: 30
   stage: ${opt:stage, 'dev'}
+
+custom:
+  pythonRequirements:
+    dockerizePip: true    # instala en un contenedor Amazon Linux igual al de Lambda
+    zip: true             # comprime las dependencias en el bundle
+    slim: true            # elimina tests, docs y archivos no esenciales
+    layer: false          # empaqueta directamente en tu función en lugar de en un layer
 
 functions:
   entidadesPrimarias:
@@ -42,6 +54,7 @@ functions:
       - httpApi:
           path: /recursos-terapeuticos
           method: any
+
   terapias:
     handler: lambda_terapias.main.handler
     events:

@@ -7,17 +7,12 @@ provider:
   runtime: python3.10
   stage: dev
   region: us-east-1
-
   environment:
     DATABASE_HOST: database.c476myam6hcq.us-east-1.rds.amazonaws.com
     DATABASE_PORT: 5432
     DATABASE_NAME: dbkneerehab
     DATABASE_USER: userkneerehab
     DATABASE_PASSWORD: LFS1ieqpA7bhuCK3W1Xo
-
-  httpApi:  # 👈 importante para gestionar stage en la URL
-    payload: '2.0'
-    cors: true
 
 functions:
   api:
@@ -47,11 +42,10 @@ custom:
   pythonRequirements:
     dockerizePip: true
     zip: false
-    pythonBin: python3
     slim: false
+    pythonBin: python3
 
   serverless-offline:
     httpPort: 3000
     lambdaPort: 3002
-    # 👇 Elimina esta línea para permitir el /dev en producción
-    # noPrependStageInUrl: true
+    noPrependStageInUrl: true

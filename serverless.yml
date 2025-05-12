@@ -52,9 +52,9 @@ custom:
   pythonRequirements:
     dockerizePip: true         # ¡MUY IMPORTANTE para AWS! Construye deps en un entorno tipo Lambda
                                  # Necesitas Docker instalado y corriendo en tu Mac.
-    zip: true                  # Empaqueta las dependencias.
+    zip: false                  # Empaqueta las dependencias.
     pythonBin: python3         # Debería usar el python3 de tu .venv si está activo al desplegar.
-    slim: true
+    slim: false
 
 
   # Configuración para 'serverless-offline' (solo para pruebas locales, no afecta AWS)

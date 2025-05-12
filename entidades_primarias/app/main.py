@@ -17,9 +17,9 @@ app.include_router(ciudad_router.router)
 app.include_router(tipo_identificacion_router.router)
 app.include_router(estado_router.router)
 
-@app.get("/ping")
+@app.get("/statuslambda")
 def ping():
-    return {"message": "pong"}
+    return {"message": "Corriendo"}
 
 
 @app.get("/test")

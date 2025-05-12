@@ -16,7 +16,7 @@ from entidades_primarias.app.shared.utils.constants import (
     HTTP_500_INTERNAL_SERVER_ERROR
 )
 
-router = APIRouter()
+router = APIRouter(prefix="/tipos-identificacion")
 
 @router.post("", response_model=TipoIdentificacionOut)
 def crear_tipo(tipo: TipoIdentificacionCreate, db: Session = Depends(get_db)):

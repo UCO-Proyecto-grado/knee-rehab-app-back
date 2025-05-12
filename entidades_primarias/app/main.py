@@ -1,14 +1,24 @@
 from fastapi import FastAPI
-from entidades_primarias.app.endpoints.router import router as api_router
 from mangum import Mangum
 from entidades_primarias.app.shared.core.cors import add_cors
+from entidades_primarias.app.endpoints import ciudad_router, pais_router, departamento_router, estado_router, tipo_identificacion_router
 
-app = FastAPI(title="KneeRehab API - Entidades Primarias")
+app = FastAPI(docs_url="/docsEntidadesPrimarias",openapi_url="/docsEntidadesPrimarias.json",redoc_url=None)
+
+app.title = "Entidades Primarias"
+app.version = "0.0.1"
+app.description = "Api for knee rehab entidades primarias"
+
 add_cors(app)
-app.include_router(api_router, prefix="/entidades-primarias")
-handler = Mangum(app)
-
+# Incluir los routers de las rutas
+app.include_router(pais_router.router)
+app.include_router(departamento_router.router)
+app.include_router(ciudad_router.router)
+app.include_router(tipo_identificacion_router.router)
+app.include_router(estado_router.router)
 
 @app.get("/ping")
 def ping():
     return {"message": "pong"}
+
+handler = Mangum(app)

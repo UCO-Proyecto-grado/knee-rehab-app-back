@@ -14,7 +14,7 @@ from entidades_primarias.app.shared.utils.constants import (
     HTTP_500_INTERNAL_SERVER_ERROR
 )
 
-router = APIRouter()
+router = APIRouter(prefix="/ciudades")
 
 @router.post("", response_model=CiudadOut)
 def crear_ciudad(ciudad: CiudadCreate, db: Session = Depends(get_db)):

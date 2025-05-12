@@ -9,36 +9,14 @@ provider:
   region: us-east-1
   environment:
     DATABASE_HOST: database.c476myam6hcq.us-east-1.rds.amazonaws.com
-    DATABASE_NAME: ${env:DATABASE_NAME, 'knee_rehab_app'}
-    DATABASE_USER: ${env:DATABASE_USER, 'postgres'}
-    DATABASE_PASSWORD: ${env:DATABASE_PASSWORD, 'LFS1ieqpA7bhuCK3W1Xo'}
-  vpc:
-    securityGroupIds:
-      - sg-0392a20f1d93cd004
-    subnetIds:
-      - subnet-08ac365d8e9f4a94e
-      - subnet-07e9d4445fe926fb2
-      - subnet-055508d0ee8c9faa5
-      - subnet-096bf89d8cc7c988d
-      - subnet-0facc690b28c25e40
-      - subnet-0b710c6c125c00c71
-  iam:
-    role:
-      statements:
-        - Effect: Allow
-          Action:
-            - ec2:CreateNetworkInterface
-            - ec2:DescribeNetworkInterfaces
-            - ec2:DeleteNetworkInterface
-            - ec2:AssignPrivateIpAddresses
-            - ec2:UnassignPrivateIpAddresses
-          Resource: "*"
+    DATABASE_PORT: 5432
+    DATABASE_NAME: dbkneerehab
+    DATABASE_USER: userkneerehab
+    DATABASE_PASSWORD: LFS1ieqpA7bhuCK3W1Xo
 
 functions:
   api:
     handler: instituciones.app.main.handler
-    memorySize: 512
-    timeout: 30
     events:
       - httpApi:
           path: /{proxy+}
@@ -47,10 +25,9 @@ functions:
 package:
   patterns:
     - '!node_modules/**'
-    - '!venv/**'
-    - '!.env'
+    - '!.serverless/**'
+    - '!.venv/**'
     - '!.git/**'
-    - '!.gitignore'
     - '!.vscode/**'
     - '!tests/**'
     - '!*.pyc'
@@ -64,16 +41,9 @@ plugins:
 custom:
   pythonRequirements:
     dockerizePip: true
-    layer:
-      name: python-deps
-      description: Python dependencies for instituciones-api
-    noDeploy:
-      - boto3
-      - botocore
-    zip: true
-    slim: true
-    stripDist: false
-    dockerImage: public.ecr.aws/sam/build-python3.10:latest
+    zip: false
+    slim: false
+    pythonBin: python3
 
   serverless-offline:
     httpPort: 3000

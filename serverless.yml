@@ -1,6 +1,6 @@
 service: entidades-primarias-api-aws # Nombre descriptivo para tu servicio en AWS
 
-frameworkVersion: '4' # Coincide con tu versión de Serverless Framework
+frameworkVersion: '3.40.0' # Coincide con tu versión de Serverless Framework
 
 provider:
   name: aws

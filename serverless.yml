@@ -32,7 +32,7 @@ package:
     - '!tests/**'
     - '!*.pyc'
     - '!__pycache__/**'
-    - 'entidades_primarias/**'
+    - 'lesiones/**'
     - 'requirements.txt'
 
 plugins:

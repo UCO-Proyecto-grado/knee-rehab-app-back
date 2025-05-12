@@ -1,22 +1,64 @@
-service: knee-rehab-app-backend
+service: entidades-primarias-api-aws # Nombre descriptivo para tu servicio en AWS
+
+frameworkVersion: '4' # Coincide con tu versión de Serverless Framework
 
 provider:
   name: aws
-  runtime: python3.9
-  region: us-east-1
-  timeout: 30
+  runtime: python3.10 # El runtime de Python para tu Lambda
+  stage: dev          # Tu etapa de despliegue (puedes cambiarla, ej. 'prod', 'staging')
+  region: us-east-1   # La región de AWS donde quieres desplegar
+
+  # Variables de entorno para tu función Lambda
+  # Estas serán accesibles por tu código Python en AWS
+  environment:
+    DATABASE_HOST: database.c476myam6hcq.us-east-1.rds.amazonaws.com
+    DATABASE_PORT: 5432
+    DATABASE_NAME: dbkneerehab
+    DATABASE_USER: userkneerehab
+    DATABASE_PASSWORD: LFS1ieqpA7bhuCK3W1Xo # ¡Recuerda asegurar esto más adelante!
 
 functions:
-  entidadesPrimarias:
-    handler: lambda_entidades_primarias.main.handler
+  # Nombre lógico de tu función Lambda dentro de Serverless Framework
+  api:
+    handler: entidades_primarias.app.main.handler # Ruta a tu handler de Mangum
     events:
+      # Configuración para API Gateway usando HTTP API (recomendado: más simple, rápido y económico)
       - httpApi:
-          path: /api/v1/paises
+          path: /{proxy+} # Enruta todas las peticiones bajo la raíz del API Gateway a tu app
           method: any
+          # El prefijo "/entidades-primarias" que tienes en tu FastAPI
+          # funcionará automáticamente sobre esta ruta base.
+          # Ejemplo de URL final: https://<id_api_gw>.execute-api.<region>.amazonaws.com/entidades-primarias/paises
 
-  rehab:
-    handler: lambda_rehab.main.handler
-    events:
-      - httpApi:
-          path: /api/v1/rehab
-          method: any
+package:
+  # Opcional: Define qué incluir/excluir en el paquete de despliegue para optimizar tamaño
+  patterns:
+    - '!node_modules/**'        # No incluir la carpeta de node (plugins de sls)
+    - '!.serverless/**'         # No incluir la carpeta de artefactos de sls
+    - '!.venv/**'               # No incluir tu entorno virtual local
+    - '!.git/**'                # No incluir la carpeta de git
+    - '!.vscode/**'             # No incluir configuración de VSCode
+    - '!tests/**'               # No incluir tests (a menos que los necesites en Lambda)
+    - '!*.pyc'                  # Excluir archivos compilados de Python
+    - '!__pycache__/**'         # Excluir la carpeta de caché de Python
+    - 'entidades_primarias/**'  # ¡IMPORTANTE! Incluye todo el código de tu aplicación
+
+plugins:
+  - serverless-python-requirements # Para empaquetar tus dependencias de Python
+  - serverless-offline         # Puedes dejarlo, no afecta el despliegue en AWS
+
+custom:
+  pythonRequirements:
+    dockerizePip: true         # ¡MUY IMPORTANTE para AWS! Construye deps en un entorno tipo Lambda
+                               # Necesitas Docker instalado y corriendo en tu Mac.
+    zip: true                  # Empaqueta las dependencias.
+    requirementsFile: entidades_primarias/requirements.txt # Ruta a tu archivo de dependencias Python.
+    pythonBin: python3         # Debería usar el python3 de tu .venv si está activo al desplegar.
+
+  # Configuración para 'serverless-offline' (solo para pruebas locales, no afecta AWS)
+  serverless-offline:
+    httpPort: 3000
+    lambdaPort: 3002
+    noPrependStageInUrl: true
+    # useDotenv: true # Si quieres que offline lea un .env en la raíz de lambda_entidades_primarias/
+                       # pero provider.environment tiene precedencia para offline también.

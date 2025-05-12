@@ -1,4 +1,4 @@
-from shared.db.session import SessionLocal
+from entidades_primarias.app.shared.db.session import SessionLocal
 
 def get_db():
     db = SessionLocal()

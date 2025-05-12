@@ -1,4 +1,4 @@
-service: entidades-primarias-api-aws
+service: lesiones-api-aws
 
 frameworkVersion: '3.40.0'
 
@@ -16,7 +16,7 @@ provider:
 
 functions:
   api:
-    handler: entidades_primarias.app.main.handler
+    handler: lesiones.app.main.handler
     events:
       - httpApi:
           path: /{proxy+}

@@ -21,4 +21,9 @@ app.include_router(estado_router.router)
 def ping():
     return {"message": "pong"}
 
+
+@app.get("/test")
+def test_route():
+    return {"status": "OK"}
+
 handler = Mangum(app)

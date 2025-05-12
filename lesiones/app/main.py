@@ -16,7 +16,7 @@ app.include_router(categoria_tipo_lesion_router.router)
 app.include_router(tipo_lesion_router.router)
 
 @app.get("/statuslambda")
-def ping():
+def statuslambda():
     return {"message": "Corriendo"}
 
 @app.get("/test")

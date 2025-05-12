@@ -45,7 +45,7 @@ package:
 
 plugins:
   - serverless-python-requirements # Para empaquetar tus dependencias de Python
-  - serverless-offline         # Puedes dejarlo, no afecta el despliegue en AWS
+  #- serverless-offline         # Puedes dejarlo, no afecta el despliegue en AWS
 
 custom:
   pythonRequirements:

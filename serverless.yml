@@ -42,6 +42,7 @@ package:
     - '!*.pyc'                  # Excluir archivos compilados de Python
     - '!__pycache__/**'         # Excluir la carpeta de caché de Python
     - 'entidades_primarias/**'  # ¡IMPORTANTE! Incluye todo el código de tu aplicación
+    - 'requirements.txt'
 
 plugins:
   - serverless-python-requirements # Para empaquetar tus dependencias de Python
@@ -50,10 +51,11 @@ plugins:
 custom:
   pythonRequirements:
     dockerizePip: true         # ¡MUY IMPORTANTE para AWS! Construye deps en un entorno tipo Lambda
-                               # Necesitas Docker instalado y corriendo en tu Mac.
+                                 # Necesitas Docker instalado y corriendo en tu Mac.
     zip: true                  # Empaqueta las dependencias.
-    requirementsFile: entidades_primarias/requirements.txt # Ruta a tu archivo de dependencias Python.
     pythonBin: python3         # Debería usar el python3 de tu .venv si está activo al desplegar.
+    slim: true
+
 
   # Configuración para 'serverless-offline' (solo para pruebas locales, no afecta AWS)
   serverless-offline:

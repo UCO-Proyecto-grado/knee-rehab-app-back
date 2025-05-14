@@ -1,8 +1,0 @@
-from instituciones.app.shared.db.session import SessionLocal
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()

@@ -1,4 +1,4 @@
-service: instituciones-api-aws
+service: recursos-terapeuticos-api-aws
 
 frameworkVersion: '3.40.0'
 
@@ -16,7 +16,7 @@ provider:
 
 functions:
   api:
-    handler: instituciones.app.main.handler
+    handler: recursos_terapeuticos.app.main.handler
     events:
       - httpApi:
           path: /{proxy+}
@@ -32,7 +32,7 @@ package:
     - '!tests/**'
     - '!*.pyc'
     - '!__pycache__/**'
-    - 'instituciones/**'
+    - 'recursos_terapeuticos/**'
     - 'requirements.txt'
 
 plugins:

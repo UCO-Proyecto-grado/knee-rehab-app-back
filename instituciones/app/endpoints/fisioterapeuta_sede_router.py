@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from uuid import UUID
 from typing import List
 from instituciones.app.shared.db.dependencies import get_db
-from instituciones.app.schemas.fisioterapeuta_sede_schema import FisioterapeutaSedeCreate, FisioterapeutaSedeOut
+from instituciones.app.schemas.instituciones.fisioterapeuta_sede_schema import FisioterapeutaSedeCreate, FisioterapeutaSedeOut
 from instituciones.app.services import fisioterapeuta_sede_service as service
 from instituciones.app.shared.utils.constants import HTTP_200_OK, HTTP_201_CREATED, HTTP_404_NOT_FOUND, HTTP_500_INTERNAL_SERVER_ERROR    
 from instituciones.app.shared.core.response_handler import success_response, error_response

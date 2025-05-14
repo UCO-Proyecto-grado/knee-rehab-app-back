@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from uuid import UUID
-from instituciones.app.models.fisioterapeuta_sede_model import FisioterapeutaSede
-from instituciones.app.schemas.fisioterapeuta_sede_schema import FisioterapeutaSedeCreate
+from instituciones.app.shared.db.base import FisioterapeutaSede
+from instituciones.app.schemas.instituciones.fisioterapeuta_sede_schema import FisioterapeutaSedeCreate
 
 def create_fisioterapeuta_sede(db: Session, data: FisioterapeutaSedeCreate):
     existe = db.query(FisioterapeutaSede).filter_by(

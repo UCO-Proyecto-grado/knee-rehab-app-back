@@ -37,7 +37,7 @@ package:
 
 plugins:
   - serverless-python-requirements
-
+  - serverless-offline
 custom:
   pythonRequirements:
     dockerizePip: true

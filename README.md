@@ -1,125 +1,151 @@
-# Knee Rehabilitation App Backend
+# Knee Rehab App - Backend
 
-Backend service for the Knee Rehabilitation Application built with FastAPI and deployed using Serverless Framework.
+Este es el backend de la aplicación Knee Rehab, desarrollado con FastAPI y desplegado en AWS Lambda.
 
-## Project Structure
+## Requisitos Previos
+
+- Python 3.10 o superior
+- Node.js y npm
+- Serverless Framework
+- Git
+
+## Configuración del Entorno Local
+
+### 1. Clonar el Repositorio
+
+```bash
+git clone <url-del-repositorio>
+cd knee-rehab-app-back
+```
+
+### 2. Configurar el Entorno Virtual de Python
+
+```bash
+# Crear el entorno virtual
+python3 -m venv .venv
+
+# Activar el entorno virtual
+# En macOS/Linux:
+source .venv/bin/activate
+# En Windows:
+# .venv\Scripts\activate
+
+# Instalar dependencias de Python
+pip install -r requirements.txt
+```
+
+### 3. Instalar Dependencias de Serverless
+
+```bash
+# Instalar plugins necesarios
+npm install --save-dev serverless-python-requirements serverless-offline
+```
+
+### 4. Configurar Variables de Entorno
+
+Crear un archivo `.env` en la raíz del proyecto con las siguientes variables:
+
+```plaintext
+DATABASE_HOST=<host-de-la-base-de-datos>
+DATABASE_PORT=<puerto>
+DATABASE_NAME=<nombre-de-la-base-de-datos>
+DATABASE_USER=<usuario>
+DATABASE_PASSWORD=<contraseña>
+```
+
+## Ejecutar la Lambda Localmente
+
+### 1. Verificar Puertos
+
+Asegúrate de que los puertos 3000 y 3002 estén disponibles. Si necesitas liberarlos:
+
+```bash
+# En macOS/Linux:
+lsof -ti:3000 | xargs kill -9 || true
+lsof -ti:3002 | xargs kill -9 || true
+
+# En Windows:
+# netstat -ano | findstr :3000
+# netstat -ano | findstr :3002
+# taskkill /PID <PID> /F
+```
+
+### 2. Iniciar el Servidor Local
+
+```bash
+# Asegúrate de que el entorno virtual esté activado
+source .venv/bin/activate  # En Windows: .venv\Scripts\activate
+
+# Iniciar el servidor
+sls offline
+```
+
+El servidor estará disponible en:
+- API: http://localhost:3000
+- Documentación: http://localhost:3000/docs
+
+### 3. Detener el Servidor
+
+Para detener el servidor, presiona `Ctrl+C` o `Command+C` en la terminal.
+
+## Estructura del Proyecto
 
 ```
 knee-rehab-app-back/
-├── lambda_entidades_primarias/
-│   └── main.py  ← FastAPI + Mangum
-│   └── api/, models/, schemas/, services/
-│
-├── lambda_rehab/
-│   └── main.py  ← FastAPI + Mangum
-│   └── api/, models/, schemas/, services/
-│
-├── shared/   
-│   ├── core/
-│   │   ├── config.py
-│   │   ├── response_handler.py 
-│   │   └── security.py
-│   │
-│   ├── db/
-│   │   ├── session.py
-│   │   ├── dependencies.py
-│   │   ├── base.py
-│   │   └── base_class.py
-│   │
-│   └── utils/
-│       └── constants.py
-│
-├── tests/ # Pruebas unitarias del sistema
-│   ├── test_rehab.py
-│   ├── test_health.py
-│   └── test_db.py
-├── .venv
-├── requirements.txt
-├── .gitignore
-└── serverless.yml
+├── .env                    # Variables de entorno
+├── .venv/                  # Entorno virtual de Python
+├── instituciones/          # Código fuente
+│   └── app/
+│       ├── main.py        # Punto de entrada
+│       └── ...
+├── requirements.txt        # Dependencias de Python
+├── serverless.yml         # Configuración de Serverless
+└── README.md              # Este archivo
 ```
 
-## Technologies Used
+## Solución de Problemas Comunes
 
-- FastAPI - Modern, fast web framework for building APIs
-- SQLAlchemy - SQL toolkit and ORM
-- PostgreSQL - Database
-- Serverless Framework - For AWS Lambda deployment
-- Mangum - AWS Lambda handler for ASGI applications
-
-## Prerequisites
-
-- Python 3.8+
-- Node.js and npm (for Serverless Framework)
-- PostgreSQL database
-- AWS account (for deployment)
-
-## Setup
-
-1. Create and activate a virtual environment:
+### El comando `sls offline` no se encuentra
+- Verifica que los plugins estén instalados
+- Reinstala los plugins con npm
 ```bash
-python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+npm install --save-dev serverless-python-requirements serverless-offline
 ```
 
-2. Install dependencies:
+### Errores de conexión a la base de datos
+- Verifica que el archivo `.env` existe y tiene los valores correctos
+- Asegúrate de que puedes conectarte a la base de datos
+
+### Puertos en uso
+- Usa los comandos mencionados en la sección "Verificar Puertos"
+- Alternativamente, puedes cambiar los puertos en `serverless.yml`:
+```yaml
+custom:
+  serverless-offline:
+    httpPort: 3000
+    lambdaPort: 3002
+```
+
+### Problemas con las dependencias de Python
+- Asegúrate de que el entorno virtual está activado
+- Reinstala las dependencias:
 ```bash
 pip install -r requirements.txt
-pip install pydantic-settings
 ```
 
-3. Install Serverless Framework:
-```bash
-npm install -g serverless
-```
+## Despliegue
 
-4. Configure environment variables:
-Create a `.env` file in the root directory with the following variables:
-```
-DATABASE_HOST=
-DATABASE_PORT=
-DATABASE_NAME=
-DATABASE_USER=
-DATABASE_PASSWORD=
-```
+El despliegue a AWS se realiza automáticamente a través de GitHub Actions cuando se hace push a la rama principal.
 
-## Development
+## Contribuir
 
-To run the application locally:
+1. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+2. Realiza tus cambios
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
 
-```bash
-uvicorn app.main:app --reload
-```
+## Licencia
 
-The API will be available at `http://localhost:8000`
-
-## Testing
-
-Run tests using pytest:
-
-```bash
-pytest
-```
-
-## Deployment
-
-Deploy to AWS using Serverless Framework:
-
-```bash
-serverless deploy
-```
-
-## API Documentation
-
-Once the application is running, you can access the API documentation at:
-- Swagger UI: `http://localhost:8000/docs`
-- ReDoc: `http://localhost:8000/redoc`
-
-## License
-
-[Your License Here]
-
-## Contributing
-
-[Your Contributing Guidelines Here]
+Este proyecto está bajo la licencia [MIT](LICENSE).
 

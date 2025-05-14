@@ -2,13 +2,13 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from uuid import UUID
 from typing import List
-from instituciones.app.schemas.centro_rehabilitacion_schema import (
+from instituciones.app.schemas.instituciones.centro_rehabilitacion_schema import (
     CentroRehabilitacionCreate,
     CentroRehabilitacionUpdate,
     CentroRehabilitacionOut,
 )
 from instituciones.app.services import centro_rehabilitacion_service as service
-from instituciones.app.models.centro_rehabilitacion_model import CentroRehabilitacion
+from instituciones.app.models.instituciones.centro_rehabilitacion_model import CentroRehabilitacion
 from instituciones.app.shared.db.dependencies import get_db
 from instituciones.app.shared.core.response_handler import success_response, error_response
 from instituciones.app.shared.utils.constants import (

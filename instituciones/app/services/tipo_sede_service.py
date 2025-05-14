@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from instituciones.app.models.tipo_sede_model import TipoSede
+from instituciones.app.shared.db.base import TipoSede
 from fastapi import HTTPException, status
 from instituciones.app.shared.utils.logging_config import get_logger
 from instituciones.app.shared.utils.log_messages import LogMessages

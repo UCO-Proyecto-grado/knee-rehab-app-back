@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from uuid import UUID
-from instituciones.app.models.sede_model import Sede
-from instituciones.app.schemas.sede_schema import SedeCreate, SedeUpdate
+from instituciones.app.shared.db.base import Sede
+from instituciones.app.schemas.instituciones.sede_schema import SedeCreate, SedeUpdate
 from fastapi import HTTPException, status
 from instituciones.app.shared.utils.logging_config import get_logger
 from instituciones.app.shared.utils.log_messages import LogMessages

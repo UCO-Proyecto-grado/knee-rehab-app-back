@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from uuid import UUID
 from typing import List
 from instituciones.app.services import tipo_sede_service
-from instituciones.app.schemas.tipo_sede_schema import TipoSedeCreate, TipoSedeOut, TipoSedeUpdate
+from instituciones.app.schemas.instituciones.tipo_sede_schema import TipoSedeCreate, TipoSedeOut, TipoSedeUpdate
 from instituciones.app.shared.db.dependencies import get_db
 from instituciones.app.shared.core.response_handler import success_response, error_response
 from instituciones.app.shared.utils.constants import (

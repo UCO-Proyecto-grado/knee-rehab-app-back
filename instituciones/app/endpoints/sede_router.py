@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from instituciones.app.schemas.sede_schema import SedeCreate, SedeUpdate, SedeOut
+from instituciones.app.schemas.instituciones.sede_schema import SedeCreate, SedeUpdate, SedeOut
 from instituciones.app.services import sede_service as service
 from instituciones.app.shared.db.dependencies import get_db
 from instituciones.app.shared.core.response_handler import success_response, error_response

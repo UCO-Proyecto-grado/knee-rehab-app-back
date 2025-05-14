@@ -1,33 +1,50 @@
-name: Deploy to Dev (AWS Lambda)
+name: Deploy to AWS Lambda - Dev
 
 on:
   push:
     branches:
-      - develop
+      - feature/lambda/terapias-develop # O la rama que uses para desarrollo/despliegue automático
 
 jobs:
   deploy-dev:
     runs-on: ubuntu-latest
+    permissions:
+      # id-token: write # No es necesario para autenticación con Access Keys
+      contents: read    # Permiso para que la action pueda leer tu repositorio
 
     steps:
       - name: Checkout código fuente
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Configurar Python 3.12
-        uses: actions/setup-python@v4
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
         with:
-          python-version: '3.12'
+          node-version: '18' # O la LTS más reciente que soporte Serverless Framework v3
+
+      - name: Instalar Serverless Framework y serverless-python-requirements
+        run: |
+          npm install -g serverless@3
+          npm install --save-dev serverless-python-requirements
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12' # Alineado con el runtime de Lambda
 
       - name: Instalar dependencias Python
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r requirements.txt # Instala desde el requirements.txt raíz
 
-      - name: Instalar Serverless Framework v3
-        run: npm install -g serverless@3
+      - name: Configurar credenciales de AWS
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }} # <- USA ESTO
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }} # <- USA ESTO
+          aws-region: us-east-1 # O tu región. Asegúrate que coincida con tu serverless.yml
+          
 
-      - name: "Desplegar con Serverless (stage: dev)"
+      - name: Desplegar con Serverless Framework en stage dev
         run: sls deploy --stage dev
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        # No necesitas la sección 'env:' aquí para las claves si 'configure-aws-credentials' funciona,
+        # ya que establece las credenciales para los siguientes pasos del job.

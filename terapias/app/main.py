@@ -1,9 +1,18 @@
 from fastapi import FastAPI
-from lambda_instituciones.api.v1.router import router as api_router
 from mangum import Mangum
 from terapias.app.shared.core.cors import add_cors
+from terapias.app.endpoints import estado_plan_rehabilitacion_ejercicio_router, paciente_categoria_tipo_lesion_router, plan_rehabilitacion_router
 
-app = FastAPI(title="KneeRehab API - Terapias")
+app = FastAPI(docs_url="/docsTerapias",openapi_url="/docsTerapias.json",redoc_url=None)
+
+app.title = "Terapias"
+app.version = "0.0.1"
+app.description = "Api for knee rehab terapias"
+
 add_cors(app)
-app.include_router(api_router, prefix="/terapias")
+# Incluir los routers de las rutas
+app.include_router(estado_plan_rehabilitacion_ejercicio_router.router)
+app.include_router(paciente_categoria_tipo_lesion_router.router)
+app.include_router(plan_rehabilitacion_router.router)
+
 handler = Mangum(app)

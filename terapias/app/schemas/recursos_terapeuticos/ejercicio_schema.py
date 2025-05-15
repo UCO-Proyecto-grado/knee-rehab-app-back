@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from uuid import UUID
 from datetime import datetime
-from instituciones.app.schemas.recursos_terapeuticos.modulo_schema import ModuloOut
+from terapias.app.schemas.recursos_terapeuticos.modulo_schema import ModuloOut
 
 
 class EjercicioBase(BaseModel):

@@ -16,7 +16,7 @@ from terapias.app.shared.utils.constants import (
     HTTP_500_INTERNAL_SERVER_ERROR
 )
 
-router = APIRouter("/plan_rehabilitacion")
+router = APIRouter(prefix="/plan_rehabilitacion")
 
 
 @router.post("", response_model=PlanRehabilitacionOut)

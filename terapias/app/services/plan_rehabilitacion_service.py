@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from uuid import UUID
-from terapias.app.models.plan_rehabilitacion_model import PlanRehabilitacion
-from terapias.app.schemas.plan_rehabilitacion_schema import PlanRehabilitacionCreate, PlanRehabilitacionUpdate
+from terapias.app.shared.db.base import PlanRehabilitacion
+from terapias.app.schemas.terapias.plan_rehabilitacion_schema import PlanRehabilitacionCreate, PlanRehabilitacionUpdate
 from fastapi import HTTPException, status
 from terapias.app.shared.utils.logging_config import get_logger
 from terapias.app.shared.utils.log_messages import LogMessages

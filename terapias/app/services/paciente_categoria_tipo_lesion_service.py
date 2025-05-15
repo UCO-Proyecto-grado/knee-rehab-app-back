@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from uuid import UUID
-from terapias.app.models.terapias.paciente_categoria_tipo_lesion_model import PacienteCategoriaTipoLesion
+from terapias.app.shared.db.base import PacienteCategoriaTipoLesion
 from terapias.app.schemas.terapias.paciente_categoria_tipo_lesion_schema import PacienteCategoriaTipoLesionCreate
 from fastapi import HTTPException, status
 from terapias.app.shared.utils.logging_config import get_logger

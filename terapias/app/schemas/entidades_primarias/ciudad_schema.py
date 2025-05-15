@@ -1,7 +1,7 @@
 from uuid import UUID
 from datetime import datetime
 from pydantic import BaseModel
-from instituciones.app.schemas.entidades_primarias.departamento_schema import DepartamentoOut
+from terapias.app.schemas.entidades_primarias.departamento_schema import DepartamentoOut
 
 class CiudadBase(BaseModel):
     nombre: str

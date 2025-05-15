@@ -1,7 +1,7 @@
 from pydantic import BaseModel, EmailStr
 from uuid import UUID
 from datetime import datetime
-from instituciones.app.schemas.entidades_primarias.tipo_identificacion_schema import TipoIdentificacionOut
+from terapias.app.schemas.entidades_primarias.tipo_identificacion_schema import TipoIdentificacionOut
 class CentroRehabilitacionBase(BaseModel):
     id_tipo_identificacion: UUID
     identificacion: str

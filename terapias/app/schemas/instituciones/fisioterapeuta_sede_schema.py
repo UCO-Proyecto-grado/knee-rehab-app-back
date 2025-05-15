@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from uuid import UUID
-from instituciones.app.schemas.acceso_personal.fisioterapeuta_schema import FisioterapeutaOut
-from instituciones.app.schemas.instituciones.sede_schema import SedeOut
+from terapias.app.schemas.acceso_personal.fisioterapeuta_schema import FisioterapeutaOut
+from terapias.app.schemas.instituciones.sede_schema import SedeOut
 
 class FisioterapeutaSedeBase(BaseModel):
     id_fisioterapeuta: UUID

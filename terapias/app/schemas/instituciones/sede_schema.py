@@ -2,10 +2,10 @@ from pydantic import BaseModel, EmailStr
 from typing import Optional
 from uuid import UUID
 from datetime import datetime
-from instituciones.app.schemas.entidades_primarias.ciudad_schema import CiudadOut
-from instituciones.app.schemas.entidades_primarias.estado_schema import EstadoOut
-from instituciones.app.schemas.instituciones.centro_rehabilitacion_schema import CentroRehabilitacionOut
-from instituciones.app.schemas.instituciones.tipo_sede_schema import TipoSedeOut
+from terapias.app.schemas.entidades_primarias.ciudad_schema import CiudadOut
+from terapias.app.schemas.entidades_primarias.estado_schema import EstadoOut
+from terapias.app.schemas.instituciones.centro_rehabilitacion_schema import CentroRehabilitacionOut
+from terapias.app.schemas.instituciones.tipo_sede_schema import TipoSedeOut
 
 class SedeBase(BaseModel):
     codigo_sede: str

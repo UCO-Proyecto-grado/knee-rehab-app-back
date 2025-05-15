@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, Text
 from sqlalchemy.dialects.postgresql import UUID
-from instituciones.app.shared.db.base_class import Base
+from terapias.app.shared.db.base_class import Base
 import uuid
 
 class TipoLesion(Base):

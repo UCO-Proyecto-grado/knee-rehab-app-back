@@ -1,7 +1,7 @@
 from sqlalchemy import Column, String, Boolean, Date, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
-from instituciones.app.shared.db.base_class import Base
+from terapias.app.shared.db.base_class import Base
 from sqlalchemy.sql import func
 from sqlalchemy.types import TIMESTAMP
 from datetime import datetime

@@ -3,10 +3,10 @@ from datetime import date
 from pydantic import BaseModel, EmailStr
 from typing import Optional
 from datetime import datetime
-from instituciones.app.schemas.instituciones.sede_schema import SedeOut
-from instituciones.app.schemas.entidades_primarias.ciudad_schema import CiudadOut
-from instituciones.app.schemas.entidades_primarias.estado_schema import EstadoOut
-from instituciones.app.schemas.entidades_primarias.tipo_identificacion_schema import TipoIdentificacionOut
+from terapias.app.schemas.instituciones.sede_schema import SedeOut
+from terapias.app.schemas.entidades_primarias.ciudad_schema import CiudadOut
+from terapias.app.schemas.entidades_primarias.estado_schema import EstadoOut
+from terapias.app.schemas.entidades_primarias.tipo_identificacion_schema import TipoIdentificacionOut
 
 class PacienteBase(BaseModel):
     identificacion: str

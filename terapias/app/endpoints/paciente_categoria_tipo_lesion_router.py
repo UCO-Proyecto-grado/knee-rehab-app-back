@@ -10,7 +10,7 @@ from terapias.app.shared.db.dependencies import get_db
 from terapias.app.shared.core.response_handler import success_response, error_response
 from terapias.app.shared.utils.constants import HTTP_200_OK, HTTP_201_CREATED, HTTP_404_NOT_FOUND, HTTP_500_INTERNAL_SERVER_ERROR
 
-router = APIRouter("/paciente-lesion")
+router = APIRouter(prefix="/paciente-lesion")
 
 
 @router.post("", response_model=PacienteCategoriaTipoLesionOut)

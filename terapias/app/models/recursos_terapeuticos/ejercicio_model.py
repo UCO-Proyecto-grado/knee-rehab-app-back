@@ -2,7 +2,7 @@ from sqlalchemy import Column, String, Integer, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 import uuid
-from instituciones.app.shared.db.base_class import Base
+from terapias.app.shared.db.base_class import Base
 from sqlalchemy.dialects.postgresql import UUID
 
 

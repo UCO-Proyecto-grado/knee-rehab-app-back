@@ -2,7 +2,7 @@
 from sqlalchemy import Column, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
-from instituciones.app.shared.db.base_class import Base
+from terapias.app.shared.db.base_class import Base
 import uuid
 
 class FisioterapeutaSede(Base):

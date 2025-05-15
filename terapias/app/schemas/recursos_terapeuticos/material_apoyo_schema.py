@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from uuid import UUID
 from datetime import datetime
-from instituciones.app.schemas.instituciones.centro_rehabilitacion_schema import CentroRehabilitacionOut
+from terapias.app.schemas.instituciones.centro_rehabilitacion_schema import CentroRehabilitacionOut
 
 class MaterialApoyoBase(BaseModel):
     nombre: str

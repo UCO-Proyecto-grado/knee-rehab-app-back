@@ -59,6 +59,7 @@ knee-rehab-app-back/
 1. Create and activate a virtual environment:
 ```bash
 python -m venv .venv
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 ```
 

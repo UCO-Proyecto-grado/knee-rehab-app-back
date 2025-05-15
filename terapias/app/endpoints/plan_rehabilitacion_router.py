@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from uuid import UUID
-from terapias.app.schemas.plan_rehabilitacion_schema import (
+from terapias.app.schemas.terapias.plan_rehabilitacion_schema import (
     PlanRehabilitacionCreate,
     PlanRehabilitacionUpdate,
     PlanRehabilitacionOut
@@ -16,7 +16,7 @@ from terapias.app.shared.utils.constants import (
     HTTP_500_INTERNAL_SERVER_ERROR
 )
 
-router = APIRouter()
+router = APIRouter("/plan_rehabilitacion")
 
 
 @router.post("", response_model=PlanRehabilitacionOut)

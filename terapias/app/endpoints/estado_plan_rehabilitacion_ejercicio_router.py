@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from uuid import UUID
-from terapias.app.schemas.estado_plan_rehabilitacion_ejercicio_schema import (
+from terapias.app.schemas.terapias.estado_plan_rehabilitacion_ejercicio_schema import (
     EstadoPRECreate, EstadoPREUpdate, EstadoPREOut
 )
 from terapias.app.services import estado_plan_rehabilitacion_ejercicio_service as service
@@ -9,7 +9,7 @@ from terapias.app.shared.db.dependencies import get_db
 from terapias.app.shared.core.response_handler import success_response, error_response
 from terapias.app.shared.utils.constants import HTTP_200_OK, HTTP_201_CREATED, HTTP_404_NOT_FOUND, HTTP_500_INTERNAL_SERVER_ERROR
 
-router = APIRouter()
+router = APIRouter("/estado-plan-ejercicio")
 
 
 @router.post("", response_model=EstadoPREOut)

@@ -5,7 +5,7 @@
 ```
 knee-rehab-app-back/
 ├── .venv/                      # Entorno virtual de Python
-├── lambda_entidades_primarias/ # Funciones Lambda para entidades primarias
+├── lambda_autentificacion/ # Funciones Lambda para autentificacion
 ├── shared/                     # Código compartido entre lambdas
 ├── .git/                       # Directorio de control de versiones
 ├── tests/                      # Pruebas del proyecto
@@ -21,7 +21,7 @@ knee-rehab-app-back/
 ### Directorios Principales
 
 - **.venv/**: Contiene el entorno virtual de Python con todas las dependencias del proyecto.
-- **lambda_entidades_primarias/**: Contiene las funciones Lambda que manejan las entidades primarias de la aplicación.
+- **lambda_autentificacion/**: Contiene las funciones Lambda que manejan las autentificacion de la aplicación.
 - **shared/**: Código compartido entre diferentes funciones Lambda para evitar duplicación.
 - **tests/**: Contiene las pruebas unitarias y de integración del proyecto.
 

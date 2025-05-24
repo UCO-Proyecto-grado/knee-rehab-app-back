@@ -1,4 +1,4 @@
-service: entidades-primarias-api-aws
+service: autentificacion-api-aws
 
 frameworkVersion: '3.40.0'
 
@@ -16,7 +16,7 @@ provider:
 
 functions:
   api:
-    handler: entidades_primarias.app.main.handler
+    handler: autentificacion.app.main.handler
     events:
       - httpApi:
           path: /{proxy+}
@@ -32,7 +32,7 @@ package:
     - '!tests/**'
     - '!*.pyc'
     - '!__pycache__/**'
-    - 'entidades_primarias/**'
+    - 'autentificacion/**'
     - 'requirements.txt'
 
 plugins:

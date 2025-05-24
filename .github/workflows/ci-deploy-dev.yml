@@ -3,7 +3,7 @@ name: Deploy to AWS Lambda - Dev
 on:
   push:
     branches:
-      - feature/lambda/entidades-primarias-develop # O la rama que uses para desarrollo/despliegue automático
+      - feature/lambda/autentificacion-develop # O la rama que uses para desarrollo/despliegue automático
 
 jobs:
   deploy-dev:

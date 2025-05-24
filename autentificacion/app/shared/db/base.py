@@ -1,2 +1,2 @@
-from entidades_primarias.app.models.pais_model import Pais
+from autentificacion.app.models.user import auth
 # Aquí se irán importando todos los demás modelos (Departamento, Ciudad, etc.)

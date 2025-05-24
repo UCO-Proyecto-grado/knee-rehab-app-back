@@ -7,3 +7,5 @@ python-dotenv
 pydantic
 pydantic_settings
 pydantic[email]
+httpx[http2]
+pyjwt

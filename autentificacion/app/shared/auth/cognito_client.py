@@ -5,9 +5,9 @@ CLIENT_ID = "18ojcokska1igo3hrb743d6bt5"
 USER_POOL_ID = "us-east-1_ZU66EGIZV"
 
 
+
 async def create_cognito_user(data):
-    client = boto3.client('cognito-idp', 
-                          region_name='us-east-1')
+    client = boto3.client('cognito-idp', region_name='us-east-1', aws_access_key_id='TU_ACCESS_KEY', aws_secret_access_key='TU_SECRET_KEY')
 
     user_id = str(uuid.uuid4())
     client.admin_create_user(

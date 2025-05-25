@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, status
-from autentificacion.app.schemas.login_schema import LoginRequest, LoginResponse
-from autentificacion.app.services import auth_service
-from autentificacion.app.schemas.login_schema import UsuarioAdministradorOut
+from autentificador.app.schemas.login_schema import LoginRequest, LoginResponse
+from autentificador.app.services import auth_service
+from autentificador.app.schemas.login_schema import UsuarioAdministradorOut
 from fastapi.responses import JSONResponse
 import asyncio
 

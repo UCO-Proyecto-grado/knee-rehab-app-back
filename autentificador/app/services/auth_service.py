@@ -1,7 +1,7 @@
 import asyncio
-from autentificacion.app.shared.auth.http_client import post_token_exchange
-from autentificacion.app.shared.auth.auth import decode_id_token
-from autentificacion.app.models.user import UsuarioAdministrador
+from autentificador.app.shared.auth.http_client import post_token_exchange
+from autentificador.app.shared.auth.auth import decode_id_token
+from autentificador.app.models.user import UsuarioAdministrador
 from datetime import datetime
 import base64
 

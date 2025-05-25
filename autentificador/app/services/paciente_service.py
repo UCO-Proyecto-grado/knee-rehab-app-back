@@ -1,5 +1,5 @@
-from autentificacion.app.shared.auth.cognito_client import create_cognito_user
-from autentificacion.app.schemas.paciente_schema import PacienteCreate
+from autentificador.app.shared.auth.cognito_client import create_cognito_user
+from autentificador.app.schemas.paciente_schema import PacienteCreate
 from uuid import uuid4
 
 async def crear_paciente(data: PacienteCreate):

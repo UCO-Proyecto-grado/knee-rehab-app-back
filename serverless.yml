@@ -1,4 +1,4 @@
-service: autentificacion-api-aws
+service: autentificador-api-aws
 
 frameworkVersion: '3.40.0'
 
@@ -16,7 +16,7 @@ provider:
 
 functions:
   api:
-    handler: autentificacion.app.main.handler
+    handler: autentificador.app.main.handler
     events:
       - httpApi:
           path: /{proxy+}
@@ -32,7 +32,7 @@ package:
     - '!tests/**'
     - '!*.pyc'
     - '!__pycache__/**'
-    - 'autentificacion/**'
+    - 'autentificador/**'
     - 'requirements.txt'
 
 plugins:

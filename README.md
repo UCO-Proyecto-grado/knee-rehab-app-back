@@ -6,7 +6,7 @@ Backend service for the Knee Rehabilitation Application built with FastAPI and d
 
 ```
 knee-rehab-app-back/
-├── lambda_autentificacion/
+├── lambda_autentificador/
 │   └── main.py  ← FastAPI + Mangum
 │   └── api/, models/, schemas/, services/
 │

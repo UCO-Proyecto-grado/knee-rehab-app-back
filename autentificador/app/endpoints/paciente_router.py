@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
-from autentificacion.app.schemas.paciente_schema import PacienteCreate
-from autentificacion.app.services import paciente_service
+from autentificador.app.schemas.paciente_schema import PacienteCreate
+from autentificador.app.services import paciente_service
 from fastapi.responses import JSONResponse
 
 router = APIRouter(prefix="/auth")

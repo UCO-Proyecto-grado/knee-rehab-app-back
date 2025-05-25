@@ -9,3 +9,4 @@ pydantic_settings
 pydantic[email]
 httpx[http2]
 pyjwt
+boto3

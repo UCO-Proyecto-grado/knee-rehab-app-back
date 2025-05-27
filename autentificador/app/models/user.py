@@ -1,17 +1,10 @@
 from dataclasses import dataclass
-from typing import List
+from typing import List, Optional
+from autentificador.app.schemas.login_schema import PacienteOut
 
 @dataclass
 class UsuarioAdministrador:
-    id: str
-    user_name: str
-    primer_nombre: str
-    segundo_nombre: str | None
-    primer_apellido: str
-    segundo_apellido: str | None
-    cedula: str | None
+    id_cognito: str
     email: str
-    foto: str | None
-    created_at: str
-    updated_at: str
+    usuario: Optional[PacienteOut]
     roles: List[str]

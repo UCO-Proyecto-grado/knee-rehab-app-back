@@ -19,8 +19,8 @@ provider:
     COGNITO_METADATA_URL: https://cognito-idp.us-east-1.amazonaws.com/tu_pool_id/.well-known/openid-configuration
     USER_POOL_ID: us-east-1_ZU66EGIZV
 
-    ACCESS_KEY_AWS: AKIA43IBNFXXZGJRU5QI
-    SECRET_KEY_AWS: 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
+    ACCESS_KEY_AWS: Clave
+    SECRET_KEY_AWS: Clave
 
 functions:
   api:

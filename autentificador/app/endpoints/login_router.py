@@ -5,7 +5,7 @@ from autentificador.app.schemas.login_schema import UsuarioAdministradorOut
 from fastapi.responses import JSONResponse
 import asyncio
 
-router = APIRouter(prefix="/auth")
+router = APIRouter()
 
 @router.post("/login", response_model=LoginResponse)
 async def login(data: LoginRequest):

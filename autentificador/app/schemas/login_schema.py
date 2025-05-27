@@ -1,6 +1,7 @@
 from pydantic import BaseModel, EmailStr
 from datetime import date
 from uuid import UUID
+from autentificador.app.schemas.instituciones.sede_schema import SedeOut
 
 class LoginRequest(BaseModel):
     code: str
@@ -55,6 +56,7 @@ class PacienteOut(BaseModel):
     tipo_identificacion: TipoIdentificacionBasicOut
     estado: EstadoBasicOut
     ciudad: CiudadBasicOut
+    sede: SedeOut
     
     class Config:
         from_attributes = True

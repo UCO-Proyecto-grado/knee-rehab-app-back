@@ -12,7 +12,7 @@ import base64
 
 COGNITO_DOMAIN = "https://us-east-1zu66egizv.auth.us-east-1.amazoncognito.com"
 CLIENT_ID = "18ojcokska1igo3hrb743d6bt5"
-REDIRECT_URI = "https://develop.d3d4ljvzw46psr.amplifyapp.com/dashboard/"
+REDIRECT_URI = "https://develop.d3d4ljvzw46psr.amplifyapp.com/"
 CLIENT_SECRET = "1eim1p0a80bkrks410u4mlk5795lon8jkldrte1dr9mge75jfvbo"
 
 

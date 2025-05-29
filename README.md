@@ -6,7 +6,7 @@ Backend service for the Knee Rehabilitation Application built with FastAPI and d
 
 ```
 knee-rehab-app-back/
-├── lambda_entidades_primarias/
+├── lambda_lesiones/
 │   └── main.py  ← FastAPI + Mangum
 │   └── api/, models/, schemas/, services/
 │
@@ -59,6 +59,7 @@ knee-rehab-app-back/
 1. Create and activate a virtual environment:
 ```bash
 python -m venv .venv
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 ```
 
